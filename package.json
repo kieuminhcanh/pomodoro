@@ -1,0 +1,32 @@
+{
+  "name": "pomodoro",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@tauri-apps/api": ">=2.0.0-beta.0",
+    "@tauri-apps/cli": ">=2.0.0-beta.0",
+    "@tauri-apps/plugin-shell": ">=2.0.0-beta.2",
+    "@types/node": "^20.12.2",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/sound": "^2.0.1",
+    "internal-ip": "^8.0.0",
+    "sass": "^1.72.0",
+    "typescript": "^5.4.3",
+    "unplugin-fonts": "^1.1.1",
+    "vite": "^5.2.7",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue": "^3.4.21",
+    "vue-responsive-video-background-player": "^2.3.1",
+    "vue-tsc": "^2.0.7",
+    "vuetify": "^3.5.13"
+  }
+}

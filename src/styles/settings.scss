@@ -1,0 +1,8 @@
+$_body-font-family: 'Roboto', 'sans-serif';
+$_heading-font-family: 'Roboto Slab', 'serif';
+
+@forward 'vuetify/settings' with (
+  $font-size-root: 18px,
+  $body-font-family: $_body-font-family,
+  $heading-font-family: $_heading-font-family
+);
