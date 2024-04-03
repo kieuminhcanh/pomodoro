@@ -1,7 +1,7 @@
 {
   "productName": "Pomodoro",
   "version": "0.0.1",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.kieuminhcanh.pomodoro",
   "build": {
     "beforeDevCommand": "yarn dev",
     "devUrl": "http://localhost:1420",
@@ -11,7 +11,7 @@
   "app": {
     "windows": [
       {
-        "title": "pomodoro",
+        "title": "Pomodoro Timer",
         "width": 800,
         "height": 600
       }
@@ -29,6 +29,13 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "windows": {
+      "allowDowngrades": true,
+      "webviewInstallMode": {
+        "silent": true,
+        "type": "downloadBootstrapper"
+      }
+    }
   }
 }

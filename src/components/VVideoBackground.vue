@@ -1,13 +1,16 @@
 <template>
-  <div class="video-background">
-    <div class="overlay" :style="{ background: backgroundColor }"></div>
-    <video autoplay muted loop :poster="backgroundSrc" :style="{ background: backgroundColor }" :src="videoSrc" />
+
+  <div class="video-background" ref="el">
+    <div class="overlay" :style="overlayStyles"></div>
+    <video v-if="isVideo" loop muted autoplay :src="props.videoSrc" poster="/images/1.jpg" ref="elVideo">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </template>
 
 <script setup lang="ts">
 
-import { watch } from 'vue'
+import { watch, ref } from 'vue'
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -18,17 +21,39 @@ const props = defineProps({
   backgroundColor: String
 })
 
+const el = ref<HTMLElement | null>()
+const elVideo = ref<HTMLVideoElement | null>()
 
-const videoSrc = computed(() => props.backgroundType === 'video' ? props.videoSrc : '')
-const backgroundSrc = computed(() => props.backgroundType === 'image' ? props.backgroundSrc : '')
-const backgroundColor = computed(() => props.backgroundType === 'color'
-  ? `linear-gradient(180deg,rgb(255 255 255/0%),rgb(0 0 0/80%)),${props.backgroundColor}`
-  : `linear-gradient(to top,rgba(0, 0, 0, 0.8), transparent)`
-)
 
-watch(() => props.backgroundType, (value: any) => {
+
+const isVideo = computed(() => props.backgroundType === 'video')
+// @ts-ignore
+const isImage = computed(() => props.backgroundType === 'image')
+const isColor = computed(() => props.backgroundType === 'color')
+
+const overlayStyles = computed(() => ({
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center center',
+  backgroundSize: 'cover',
+  backgroundImage: isColor.value ? `radial-gradient(${props.backgroundColor}, #0000004d)`
+    : isImage.value ? `linear-gradient(to bottom left, rgba(225, 225, 225, 0), rgba(0,0,0, 0.9)), url(${props.backgroundSrc})`
+      : `linear-gradient(to bottom,rgba(225, 225, 225, 0),rgba(0,0,0, 0.9))`,
+  // backdropFilter: isVideo.value ? 'blur(1px)' : 'none'
+
+}))
+
+watch(() => props, (value) => {
   console.log(value)
 
+  el.value?.classList.add('fade-transition')
+  setTimeout(() => {
+    if (isVideo.value) {
+      elVideo.value!.play()
+    }
+    el.value?.classList.remove('fade-transition')
+  }, 1500)
+}, {
+  deep: true
 })
 
 </script>
@@ -54,8 +79,23 @@ watch(() => props.backgroundType, (value: any) => {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    overflow-x: hidden;
     z-index: -1;
-    object-fit: cover;
+  }
+}
+
+.fade-transition {
+  animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 </style>

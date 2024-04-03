@@ -1,0 +1,35 @@
+$_body-font-family: 'Roboto', 'sans-serif';
+$_heading-font-family: 'Roboto Slab', 'serif';
+
+@forward 'vuetify/settings' with (
+  $font-size-root: 18px,
+  $body-font-family: $_body-font-family,
+  $heading-font-family: $_heading-font-family
+);
+
+.clock {
+  font-family: $_heading-font-family;
+  user-select: none;
+
+  .break {
+    animation: animate 2s linear infinite;
+  }
+
+  .long {
+    animation: animate 3s linear infinite;
+  }
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

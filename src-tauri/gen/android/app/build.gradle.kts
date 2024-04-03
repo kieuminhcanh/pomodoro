@@ -6,10 +6,10 @@ plugins {
 
 android {
     compileSdk = 33
-    namespace = "com.tauri.pomodoro"
+    namespace = "com.kieuminhcanh.pomodoro"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "com.tauri.pomodoro"
+        applicationId = "com.kieuminhcanh.pomodoro"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
