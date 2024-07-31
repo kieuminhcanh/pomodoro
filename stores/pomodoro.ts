@@ -90,7 +90,7 @@ export const usePomodoroStore = defineStore('PomodoroStore', () => {
 
   const isReset = computed(() => !timer.value && !isActive.value)
 
-  const title = computed(() => useChangeCase(`${pomodoro.value.active} ${pomodoro.value.active === 'longBreak' ? '' : pomodoro.value.times}`, 'capitalCase', { delimiter: ' ' }).value)
+  const title = useChangeCase(`${pomodoro.value.active} ${pomodoro.value.active === 'longBreak' ? '' : pomodoro.value.times}`, 'sentenceCase').value
 
   function setTimer(minutes?: number) {
     timer.value = minutes ? minutes * 60 : (pomodoro.value as any)[pomodoro.value.active] * 60

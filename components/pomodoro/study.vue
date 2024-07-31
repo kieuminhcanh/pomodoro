@@ -38,9 +38,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useChangeCase } from '@vueuse/integrations/useChangeCase.mjs'
-
-
   const pomodoroStore = usePomodoroStore()
   const el = ref<HTMLElement | null>( null )
 
