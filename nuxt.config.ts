@@ -13,6 +13,11 @@ export default defineNuxtConfig({
       ]
     }
   },
+  compatibilityDate: "2024-07-23",
+  css: ['~/assets/css/main.css'],
+  future: {
+    compatibilityVersion: 4,
+  },
   modules: [
     "@nuxt/ui",
     "@vueuse/nuxt",
@@ -24,6 +29,7 @@ export default defineNuxtConfig({
     includeAssets: ['logo.png'],
     registerType: 'autoUpdate',
     manifest: {
+      id: '/',
       name: 'Pomodoro Timer',
       short_name: 'Pomodoro',
       description: 'Work in Sprints, Win the Marathon',
@@ -35,14 +41,5 @@ export default defineNuxtConfig({
         },
       ]
     }
-  },
-  compatibilityDate: "2024-07-23",
-  css: ['~/assets/css/main.css'],
-  ui: {
-    safelistColors: ['orange', 'yellow']
-  },
-  components: {
-    global: true,
-    dirs: ['~/components', '~/components/pomodoro']
   },
 })

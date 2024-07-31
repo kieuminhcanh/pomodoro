@@ -1,4 +1,4 @@
-import { useChangeCase } from '@vueuse/integrations/useChangeCase'
+import { titleCase } from "title-case"
 
 export const usePomodoroStore = defineStore('PomodoroStore', () => {
   const settingsStore = useSettingsStore()
@@ -90,7 +90,7 @@ export const usePomodoroStore = defineStore('PomodoroStore', () => {
 
   const isReset = computed(() => !timer.value && !isActive.value)
 
-  const title = useChangeCase(`${pomodoro.value.active} ${pomodoro.value.active === 'longBreak' ? '' : pomodoro.value.times}`, 'sentenceCase').value
+  const title = computed(() => titleCase(`${pomodoro.value.active} ${pomodoro.value.active === 'longBreak' ? '' : pomodoro.value.times}`))
 
   function setTimer(minutes?: number) {
     timer.value = minutes ? minutes * 60 : (pomodoro.value as any)[pomodoro.value.active] * 60

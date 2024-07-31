@@ -23,6 +23,7 @@
     "@vueuse/sound": "^2.0.1",
     "change-case": "5",
     "howler": "^2.2.4",
-    "nuxt": "^3.12.4"
+    "nuxt": "^3.12.4",
+    "title-case": "^4.3.1"
   }
 }
