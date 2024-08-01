@@ -1,75 +1,56 @@
-# Nuxt UI Minimal Starter
+# Pomodoro Website
 
-Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## Setup
+A modern and customizable Pomodoro timer web application built with Nuxt 3 and Nuxt UI, designed to enhance focus and productivity through structured work intervals.
 
-Make sure to install the dependencies:
+## Features
 
+- **Pomodoro Timer:** Implement the classic Pomodoro technique with 25-minute work intervals and 5-minute short breaks.
+- **Customizable Intervals:** Tailor work and break durations to your individual workflow and preferences.
+- **Sound Notifications:** Receive audible cues to mark the start and end of each interval, helping you stay on track.
+- **Minimalist UI:** Benefit from a clean, distraction-free interface crafted with Nuxt UI components, optimizing your focus.
+- **Responsive Design:** Ensure a seamless user experience across desktop and mobile devices for productivity on the go.
+
+## Live Demo
+
+[Insert Link to Live Demo Here (if available)]
+
+## Screenshots
+
+[Include high-quality screenshots showcasing the app's interface and features in different states]
+
+## Technology Stack
+- [Nuxt 3](https://nuxt.com)
+- [Nuxt UI](https://ui.nuxt.com)
+- [Tailwindcss](https://tailwindcss.com)
+- [TypeScript](https://www.typescriptlang.org)
+- [Pinia](https://pinia.vuejs.org/)
+
+## Getting Started
+
+1. **Clone the Repository:**
 ```bash
-# npm
+  git clone https://github.com/kieuminhcanh/pomodoro
+```
+
+2. **Install Dependencies:**
+```bash
+cd pomodoro
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+3. **Run Development Server:**
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+npm run dev 
+or
+yarn dev  
 ```
 
-## Production
+## Contributing
+We welcome contributions to improve the Pomodoro Website. Please follow our contribution guidelines and code of conduct when submitting issues or pull requests.
 
-Build the application for production:
+## License
+This project is open-source software licensed under the MIT License. See the LICENSE.md file for complete details.
 
-```bash
-# npm
-npm run build
 
-# pnpm
-pnpm run build
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
