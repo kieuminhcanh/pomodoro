@@ -14,11 +14,12 @@ A modern and customizable Pomodoro timer web application built with Nuxt 3 and N
 
 ## Live Demo
 
-[Insert Link to Live Demo Here (if available)]
+[![Pomodoro demo]([https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg](https://github.com/user-attachments/assets/eb33a646-4fd7-486a-a193-8fced697559b))]([https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE](https://youtu.be/1O7yQ36yoLs))
+
 
 ## Screenshots
 
-[Include high-quality screenshots showcasing the app's interface and features in different states]
+![screenshot-pomodoro website-2024 08](https://github.com/user-attachments/assets/eb33a646-4fd7-486a-a193-8fced697559b)
 
 ## Technology Stack
 - [Nuxt 3](https://nuxt.com)
