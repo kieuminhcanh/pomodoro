@@ -72,6 +72,7 @@ export const useSettingsStore = defineStore('AppSettings', () => {
     drawer,
     fullscreen,
     style,
+    music,
     background,
     allowNotification,
     toggleDrawer,

@@ -7,3 +7,24 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-gray-400) / 1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-gray-500) / 1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-gray-600) / 1);
+}

@@ -4,6 +4,11 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 export default <Partial<Config>>{
   theme: {
     extend: {
+      aspectRatio: {
+        auto: 'auto',
+        square: '1 / 1',
+        video: '16 / 9'
+      },
       colors: {
         green: {
           50: '#EFFDF5',
@@ -21,7 +26,7 @@ export default <Partial<Config>>{
       }
     }
   },
-  content:[
+  content: [
     './components/**/*.{vue,js}',
   ],
   safelist: [

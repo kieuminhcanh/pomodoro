@@ -43,22 +43,28 @@
 </script>
 
 <template>
-  <USlideover v-model="drawer" :overlay="false">
-    <UCard :ui="{
-      header: {
-        base: 'flex justify-center'
-      }
-    }">
+  <USlideover v-model="drawer" :overlay="false"
+    class="overflow-y-auto scrollbar scrollbar-thumb-blue-600 scrollbar-thumb-rounded">
+    <UCard>
       <template #header>
-        <UButtonGroup orientation="horizontal">
+        <div class="flex flex-row items-center justify-between">
+          <h3>Settings</h3>
+          <UButton icon="i-heroicons-x-mark" @click="settingsStore.toggleDrawer()" />
+        </div>
+      </template>
+
+
+      <div class="text-center">
+        <UButtonGroup orientation="horizontal" class="justify-center">
 
           <UButton class="capitalize" v-for="preset in ['popular', 'medium', 'extended', 'Custom']" :key="preset"
             :label="preset" @click="pomodoroStore.setPomodoro(preset)"
             :variant="pomodoro.preset === preset ? 'solid' : 'outline'" />
           />
         </UButtonGroup>
-      </template>
-      <div class="grid grid-flow-row gap-4 ">
+      </div>
+
+      <div class="grid grid-flow-row gap-4 my-6">
         <div class="flex flex-row items-center">
           <div class="flex-none w-28">Timer
           </div>
@@ -101,14 +107,24 @@
           </div>
         </div>
       </div>
-    </UCard>
 
-    <UCard>
+      <UDivider class="my-6" />
+
       <div class="grid grid-flow-row gap-4">
         <div class="flex flex-row items-center">
           <div class="flex-none w-28">Theme</div>
           <div class="grow">
             <ColorPicker :ui="{ strategy: 'fixed' }" />
+          </div>
+        </div>
+        <div class="flex flex-row items-center">
+          <div class="flex-none w-28">Skin</div>
+          <div class="grow flex gap-4">
+            <div v-for=" style in pomodoroStyles " :key="style">
+              <UButton class="justify-center capitalize" @click="settingsStore.setPomodoroStyle(style)"
+                :variant="settingsStore.style === style ? 'solid' : 'outline'">{{ style }}
+              </UButton>
+            </div>
           </div>
         </div>
 
@@ -121,52 +137,47 @@
         </div>
         <div class="flex flex-row items-center">
           <div class="flex-none w-28">Image</div>
-          <div class="grow grid-flow-row gap-4">
-            <div class="grid grid-cols-4 gap-4">
-              <div v-for="image in images" :key="image" class="h-full">
+          <div class="grow">
+            <div class="grid grid-cols-3 gap-4">
+              <div v-for="image in images" :key="image" class="h-full aspect-square">
                 <img class="object-cover h-16 w-full rounded-lg" :src="image"
-                  @click="settingsStore.setBackground({ type: 'image', value: image })" />
+                  @click="settingsStore.setBackground({ type: 'image', value: image })"
+                  :class="{ 'ring-2 ring-blue-500': settingsStore.background.value === image }" />
               </div>
             </div>
           </div>
         </div>
         <div class="flex flex-row items-center">
           <div class="flex-none w-28">Video</div>
-          <div class="grow  grid-flow-row gap-4">
-            <div class="grid grid-cols-4 gap-4">
-              <div v-for="video in videos" :key="video" class="h-full">
+          <div class="grow">
+            <div class="grid grid-cols-3 gap-4">
+              <div v-for="video in videos" :key="video" class="h-full aspect-square">
                 <img class="object-cover h-16 w-full rounded-lg" :src="video.replace('.mp4', '.png')"
-                  @click="settingsStore.setBackground({ type: 'video', value: video })" />
+                  @click="settingsStore.setBackground({ type: 'video', value: video })"
+                  :class="{ 'ring-2 ring-blue-500': settingsStore.background.value === video }" />
               </div>
             </div>
           </div>
         </div>
-        <!--
-        <div class="flex flex-row items-center">
-          <div class="flex-none w-28">Sounds</div>
-          <div class="grow  grid-flow-row gap-4">
-            <div class="grid grid-cols-4 gap-4">
-              <UButton @click="settingsStore.playSound('timer')">Timer</UButton>
-              <UButton @click="settingsStore.playSound('break')">Break</UButton>
-            </div>
-          </div>
-        </div>
-        -->
         <div class="flex flex-row items-center">
           <div class="flex-none w-28">Music</div>
           <div class="grow  grid-flow-row gap-4">
             <div class="grid grid-cols-4 gap-4">
-              <UButton class="justify-center" @click="settingsStore.setMusic('')">None</UButton>
+              <UButton class="justify-center" @click="settingsStore.setMusic('')"
+                :variant="settingsStore.music === '' ? 'solid' : 'outline'" icon="i-heroicons-speaker-x-mark"></UButton>
               <UButton class="justify-center" v-for="(music, index) in playlist" :key="music"
-                @click="settingsStore.setMusic(music)">{{ index +
+                @click="settingsStore.setMusic(music)" :variant="settingsStore.music === music ? 'solid' : 'outline'">{{
+                  index
+                  +
                   1 }}
               </UButton>
             </div>
           </div>
         </div>
       </div>
-    </UCard>
-    <UCard>
+
+      <UDivider class="my-6" />
+
       <div class="grid grid-flow-row gap-4">
         <div class="flex flex-row items-center">
           <div class="grow">Fullscreen on Start</div>
@@ -181,33 +192,25 @@
           </div>
         </div>
       </div>
-    </UCard>
-    <UCard>
-      <template #header>
-        <h3 class="text-2xl">Styles</h3>
-      </template>
-      <div class="grid grid-cols-4 gap-4">
-        <UButton v-for=" style in pomodoroStyles " :key="style" class="justify-center capitalize"
-          @click="settingsStore.setPomodoroStyle(style)">{{ style }}</UButton>
-      </div>
-    </UCard>
 
-    <UCard>
-      <template #header>
-        <h3 class="text-2xl">Dev Mode</h3>
-      </template>
-      <div class="grid grid-flow-row gap-4">
-        <div class="flex flex-row items-center">
-          <div class="flex-none w-28">Set timer</div>
-          <div class="grow">
-            <UButtonGroup class="flex" orientation="horizontal">
-              <UInput class="grow" placeholder="Seconds" v-model="dev.timer" />
-              <UButton icon="i-heroicons-paper-airplane"
-                @click="pomodoroStore.setTimer(dev.timer ? dev.timer / 60 : undefined)" />
-            </UButtonGroup>
+      <template v-if="useRuntimeConfig().public.dev">
+        <UDivider class="my-6" />
+        <h3 class="text-2xl mb-6">Dev Mode</h3>
+        <div class="grid grid-flow-row gap-4">
+          <div class="flex flex-row items-center">
+            <div class="flex-none w-28">Set timer</div>
+            <div class="grow">
+              <UButtonGroup class="flex" orientation="horizontal">
+                <UInput class="grow" placeholder="Seconds" v-model="dev.timer" />
+                <UButton icon="i-heroicons-paper-airplane"
+                  @click="pomodoroStore.setTimer(dev.timer ? dev.timer / 60 : undefined)" />
+              </UButtonGroup>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
     </UCard>
+
+
   </USlideover>
 </template>

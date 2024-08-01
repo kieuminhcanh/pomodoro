@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      dev: process.env.NODE_ENV === 'development', // Expose dev mode as a runtime config variable
+    }
+  },
   devtools: { enabled: false },
   ssr: false,
   app: {
@@ -23,7 +28,8 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
-    "@vite-pwa/nuxt"
+    "@vite-pwa/nuxt",
+    "nuxt-gtag"
   ],
   pwa: {
     includeAssets: ['logo.png'],
@@ -39,7 +45,18 @@ export default defineNuxtConfig({
           src: 'logo.png',
           type: 'image/png'
         },
-      ]
-    }
+      ],
+    },
   },
+  gtag: {
+    tags: [
+      // Google Ads and GA4, with additional configuration
+      {
+        id: 'GTM-PPTKHN66',
+        config: {
+          page_title: 'Pomodoro Timer',
+        }
+      },
+    ]
+  }
 })

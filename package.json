@@ -24,6 +24,7 @@
     "change-case": "5",
     "howler": "^2.2.4",
     "nuxt": "^3.12.4",
+    "nuxt-gtag": "^2.1.0",
     "title-case": "^4.3.1"
   }
 }

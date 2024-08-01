@@ -5,9 +5,9 @@
     </div>
     <div v-else-if="settingsStore.background.type === 'image'"
       class="fixed top-0 right-0 bottom-0 left-0 bg-cover bg-no-repeat bg-center" :style="imageStyles"></div>
-    <div v-else-if="settingsStore.background.type === 'video'" class="fixed top-0 right-0 bottom-0 left-0">
+    <div v-else-if="settingsStore.background.type === 'video'" class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center" >
       <video :src="settingsStore.background.value" autoplay loop muted
-        className="absolute z-10 w-auto min-w-full min-h-full max-w-none">
+        className="absolute z-10 w-auto min-w-full min-h-full max-w-none object-cover">
       </video>
     </div>
   </Transition>
