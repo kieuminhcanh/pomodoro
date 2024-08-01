@@ -14,7 +14,7 @@ A modern and customizable Pomodoro timer web application built with Nuxt 3 and N
 
 ## Live Demo
 
-[![Pomodoro live demo](https://img.youtube.com/vi/1O7yQ36yoLs/0.jpg)](https://www.youtube.com/watch?v=1O7yQ36yoLs)
+[![YouTube](http://i.ytimg.com/vi/1O7yQ36yoLs/hqdefault.jpg)](https://www.youtube.com/watch?v=1O7yQ36yoLs)
 
 ## Screenshots
 
