@@ -15,6 +15,17 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'Work in Sprints, Win the Marathon' },
         { name: 'author', content: 'Ken Kieu' },
+        { property: 'og:title', content: 'Pomodoro Timer' },
+        { property: 'og:description', content: 'Work in Sprints, Win the Marathon' },
+        { property: 'og:image', content: 'https://pomodoro.website/screenshots/1.png' },
+        { property: 'og:url', content: 'https://pomodoro.website' },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:site', content: '@kieuminhcanh' },
+        { name: 'twitter:creator', content: '@kieuminhcanh' },
+        { name: 'twitter:title', content: 'Pomodoro Timer' },
+        { name: 'twitter:description', content: 'Work in Sprints, Win the Marathon' },
+        { name: 'twitter:image', content: 'https://pomodoro.website/screenshots/1.png' },
       ]
     }
   },
@@ -49,14 +60,6 @@ export default defineNuxtConfig({
     },
   },
   gtag: {
-    tags: [
-      // Google Ads and GA4, with additional configuration
-      {
-        id: 'GTM-PPTKHN66',
-        config: {
-          page_title: 'Pomodoro Timer',
-        }
-      },
-    ]
+    id: 'G-FFJP2236LD'
   }
 })

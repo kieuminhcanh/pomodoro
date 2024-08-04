@@ -59,7 +59,8 @@
 
           <UButton class="capitalize" v-for="preset in ['popular', 'medium', 'extended', 'Custom']" :key="preset"
             :label="preset" @click="pomodoroStore.setPomodoro(preset)"
-            :variant="pomodoro.preset === preset ? 'solid' : 'outline'" />
+            :variant="pomodoro.preset === preset ? 'solid' : 'outline'" 
+            :disabled="pomodoroStore.isActive" />
           />
         </UButtonGroup>
       </div>
@@ -69,7 +70,7 @@
           <div class="flex-none w-28">Timer
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.timer" :max="100" @change="pomodoro.preset = 'Custom'"></URange>
+            <URange v-model="pomodoro.timer" :max="100" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.timer }} mins
@@ -80,7 +81,7 @@
           <div class="flex-none w-28">Break
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.break" :max="60" @change="pomodoro.preset = 'Custom'"></URange>
+            <URange v-model="pomodoro.break" :max="60" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.break }} mins
@@ -90,7 +91,7 @@
           <div class="flex-none w-28">Cycles
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.cycles" :max="10" @change="pomodoro.preset = 'Custom'"></URange>
+            <URange v-model="pomodoro.cycles" :max="10" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.cycles }} mins
@@ -100,7 +101,7 @@
           <div class="flex-none w-28">Long break
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.longBreak" :max="90" @change="pomodoro.preset = 'Custom'"></URange>
+            <URange v-model="pomodoro.longBreak" :max="90" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.longBreak }} mins
