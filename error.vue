@@ -9,8 +9,17 @@
 </script>
 
 <template>
-  <div>
-    <h2>{{ error?.statusCode }}</h2>
-    <button @click="handleError">Clear errors</button>
-  </div>
+  <UContainer>
+    <UCard>
+      <template #header>
+        <h1 class="text-2xl">Error: {{ error?.statusCode }}</h1>
+      </template>
+
+      <p>{{ error?.message }}</p>
+
+      <template #footer>
+        <UButton @click="handleError">Back to Home</UButton>
+      </template>
+    </UCard>
+  </UContainer>
 </template>

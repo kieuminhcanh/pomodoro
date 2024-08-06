@@ -43,42 +43,47 @@ export default defineNuxtConfig({
     "nuxt-gtag"
   ],
   pwa: {
-    includeAssets: ['logo.png'],
-    registerType: 'autoUpdate',
-    client: {
-      installPrompt: true,
+    "includeAssets": [
+      "logo.png"
+    ],
+    "registerType": "autoUpdate",
+    "client": {
+      "installPrompt": true
     },
-    manifest: {
+    "manifest": {
       "id": "website.pomodoro.pwa",
       "scope": "/",
       "start_url": "/",
-      name: 'Pomodoro Timer',
-      short_name: 'Pomodoro',
-      description: 'Work in Sprints, Win the Marathon',
+      "name": "Pomodoro Timer",
+      "short_name": "Pomodoro",
+      "description": "Work in Sprints, Win the Marathon",
       "display": "standalone",
       "background_color": "#000000",
       "lang": "en",
-      theme_color: '#ffffff',
-      orientation: 'any',
+      "theme_color": "#ffffff",
+      "orientation": "any",
       "launch_handler": {
-        "client_mode": ["navigate-existing", "auto"]
+        "client_mode": [
+          "navigate-existing",
+          "auto"
+        ]
       },
-      icons: [
+      "icons": [
         {
           "src": "logo.png",
           "sizes": "72x72 96x96 128x128 256x256 512x512",
           "type": "image/png"
         }
       ],
-      handle_links: 'auto',
-      dir: 'ltr',
-      iarc_rating_id: '228e2971-4722-41cb-9ab8-609426d77fae',
+      "handle_links": "auto",
+      "dir": "ltr",
+      "iarc_rating_id": "228e2971-4722-41cb-9ab8-609426d77fae",
       "screenshots": [
         {
           "src": "/screenshots/1.png",
           "sizes": "1280x720",
           "type": "image/jpg",
-          "platform": "wide",
+          "platform": "wide"
         }
       ],
       "categories": [
@@ -86,8 +91,17 @@ export default defineNuxtConfig({
         "productivity",
         "tools",
         "utilities"
-      ]
-    },
+      ],
+      "share_target": {
+        "action": "/",
+        "method": "GET",
+        "params": {
+          "title": "Pomodoro Timer",
+          "text": "Work in Sprints, Win the Marathon",
+          "url": "https://pomodoro.website"
+        }
+      }
+    }
   },
   gtag: {
     id: 'G-FFJP2236LD'
