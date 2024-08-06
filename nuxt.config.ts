@@ -45,6 +45,9 @@ export default defineNuxtConfig({
   pwa: {
     includeAssets: ['logo.png'],
     registerType: 'autoUpdate',
+    client: {
+      installPrompt: true,
+    },
     manifest: {
       "id": "website.pomodoro.pwa",
       "scope": "/",
