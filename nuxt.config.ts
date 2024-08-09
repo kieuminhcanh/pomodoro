@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Ken Kieu' },
         { property: 'og:title', content: 'Pomodoro Timer' },
         { property: 'og:description', content: 'Work in Sprints, Win the Marathon' },
-        { property: 'og:image', content: 'https://pomodoro.website/screenshots/1.png' },
+        { property: 'og:image', content: 'https://pomodoro.website/screenshots/shared.png' },
         { property: 'og:url', content: 'https://pomodoro.website' },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary' },
@@ -25,10 +25,11 @@ export default defineNuxtConfig({
         { name: 'twitter:creator', content: '@kieuminhcanh' },
         { name: 'twitter:title', content: 'Pomodoro Timer' },
         { name: 'twitter:description', content: 'Work in Sprints, Win the Marathon' },
-        { name: 'twitter:image', content: 'https://pomodoro.website/screenshots/1.png' },
+        { name: 'twitter:image', content: 'https://pomodoro.website/screenshots/shared.png' },
       ]
     }
   },
+
   compatibilityDate: "2024-07-23",
   css: ['~/assets/css/main.css'],
   future: {
@@ -40,7 +41,8 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
-    "nuxt-gtag"
+    "nuxt-gtag",
+    "nuxt-og-image"
   ],
   pwa: {
     "includeAssets": [
@@ -80,8 +82,14 @@ export default defineNuxtConfig({
       "iarc_rating_id": "228e2971-4722-41cb-9ab8-609426d77fae",
       "screenshots": [
         {
-          "src": "/screenshots/1.png",
-          "sizes": "1280x720",
+          "src": "/screenshots/1500x2668.png",
+          "sizes": "1500x2668",
+          "type": "image/jpg",
+          "platform": "mobile"
+        },
+        {
+          "src": "/screenshots/2560x1600.png",
+          "sizes": "2560x1600",
           "type": "image/jpg",
           "platform": "wide"
         }
