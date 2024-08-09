@@ -41,8 +41,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
-    "nuxt-gtag",
-    "nuxt-og-image"
+    "nuxt-gtag"    
   ],
   pwa: {
     "includeAssets": [
