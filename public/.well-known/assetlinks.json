@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "website.pomodoro.twa",
+      "sha256_cert_fingerprints": [
+        "74:CE:D0:25:87:65:D4:9D:D8:7A:75:40:2D:FC:E2:7D:07:89:CE:EB:D1:D7:2D:49:D0:78:79:7B:3D:60:E7:16"
+      ]
+    }
+  }
+]
