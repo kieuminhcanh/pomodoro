@@ -43,11 +43,15 @@
         </p>
       </div>
     </div>
-    <UButton icon="i-heroicons-home" block to="/">Home</UButton>
+    <UButton icon="i-heroicons-home" block to="/" aria-label="Home">Home</UButton>
   </UContainer>
 </template>
 
 <script lang="ts" setup>
+  useSeoMeta({
+    title: 'Pomodoro Timer - Privacy Policy',
+    ogTitle: 'Pomodoro Timer - Privacy Policy',    
+  })
 
 </script>
 

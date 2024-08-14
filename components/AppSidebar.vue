@@ -14,7 +14,7 @@
 
   const playlist = Object.entries(musicImport).map(([key]) => key.split('public').pop()) as string[]
 
-  const imagesImport = import.meta.glob('@/public/images/*.jpg')
+  const imagesImport = import.meta.glob('@/public/images/*-thumbnail.jpg')
 
   const images = Object.entries(imagesImport).map(([key]) => key.split('public').pop()) as string[]
 
@@ -44,12 +44,13 @@
 
 <template>
   <USlideover v-model="drawer" :overlay="false"
-    class="overflow-y-auto scrollbar scrollbar-thumb-blue-600 scrollbar-thumb-rounded">
+    class="overflow-y-auto scrollbar scrollbar-thumb-blue-600 scrollbar-thumb-rounded" role="Navigation">
     <UCard>
       <template #header>
         <div class="flex flex-row items-center justify-between">
           <h3>Settings</h3>
-          <UButton icon="i-heroicons-x-mark" @click="settingsStore.toggleDrawer()" />
+          <UButton icon="i-heroicons-x-mark" @click="settingsStore.toggleDrawer()"
+            aria-label="Close navigation drawer" />
         </div>
       </template>
 
@@ -59,9 +60,8 @@
 
           <UButton class="capitalize" v-for="preset in ['popular', 'medium', 'extended', 'Custom']" :key="preset"
             :label="preset" @click="pomodoroStore.setPomodoro(preset)"
-            :variant="pomodoro.preset === preset ? 'solid' : 'outline'" 
-            :disabled="pomodoroStore.isActive" />
-          />
+            :variant="pomodoro.preset === preset ? 'solid' : 'outline'" :disabled="pomodoroStore.isActive"
+            :aria-label="`Pomodoro preset ${preset}`" />
         </UButtonGroup>
       </div>
 
@@ -70,7 +70,8 @@
           <div class="flex-none w-28">Timer
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.timer" :max="100" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
+            <URange v-model="pomodoro.timer" :max="100" @change="pomodoro.preset = 'Custom'"
+              :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.timer }} mins
@@ -81,7 +82,8 @@
           <div class="flex-none w-28">Break
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.break" :max="60" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
+            <URange v-model="pomodoro.break" :max="60" @change="pomodoro.preset = 'Custom'"
+              :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.break }} mins
@@ -91,7 +93,8 @@
           <div class="flex-none w-28">Cycles
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.cycles" :max="10" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
+            <URange v-model="pomodoro.cycles" :max="10" @change="pomodoro.preset = 'Custom'"
+              :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.cycles }} mins
@@ -101,7 +104,8 @@
           <div class="flex-none w-28">Long break
           </div>
           <div class="grow">
-            <URange v-model="pomodoro.longBreak" :max="90" @change="pomodoro.preset = 'Custom'" :disabled="pomodoroStore.isActive"></URange>
+            <URange v-model="pomodoro.longBreak" :max="90" @change="pomodoro.preset = 'Custom'"
+              :disabled="pomodoroStore.isActive"></URange>
           </div>
           <div class="flex-none w-16 text-right">
             {{ pomodoro.longBreak }} mins
@@ -123,7 +127,9 @@
           <div class="grow flex gap-4">
             <div v-for=" style in pomodoroStyles " :key="style">
               <UButton class="justify-center capitalize" @click="settingsStore.setPomodoroStyle(style)"
-                :variant="settingsStore.style === style ? 'solid' : 'outline'">{{ style }}
+                :aria-label="`Pomodoro style ${style}`" :variant="settingsStore.style === style ? 'solid' : 'outline'">
+                {{
+                style }}
               </UButton>
             </div>
           </div>
@@ -141,9 +147,9 @@
           <div class="grow">
             <div class="grid grid-cols-3 gap-4">
               <div v-for="image in images" :key="image" class="h-full aspect-square">
-                <img class="object-cover h-16 w-full rounded-lg" :src="image"
-                  @click="settingsStore.setBackground({ type: 'image', value: image })"
-                  :class="{ 'ring-2 ring-blue-500': settingsStore.background.value === image }" />
+                <img class="object-cover h-16 w-full rounded-lg" :src="image" alt="Background image"
+                  @click="settingsStore.setBackground({ type: 'image', value: image.replace('-thumbnail', '') })"
+                  :class="{ 'ring-2 ring-blue-500': settingsStore.background.value === image.replace('-thumbnail', '') }" />
               </div>
             </div>
           </div>
@@ -153,7 +159,7 @@
           <div class="grow">
             <div class="grid grid-cols-3 gap-4">
               <div v-for="video in videos" :key="video" class="h-full aspect-square">
-                <img class="object-cover h-16 w-full rounded-lg" :src="video.replace('.mp4', '.png')"
+                <img class="object-cover h-16 w-full rounded-lg" :src="video.replace('.mp4', '-thumbnail.png')" alt="Background video"
                   @click="settingsStore.setBackground({ type: 'video', value: video })"
                   :class="{ 'ring-2 ring-blue-500': settingsStore.background.value === video }" />
               </div>
@@ -165,8 +171,9 @@
           <div class="grow  grid-flow-row gap-4">
             <div class="grid grid-cols-4 gap-4">
               <UButton class="justify-center" @click="settingsStore.setMusic('')"
-                :variant="settingsStore.music === '' ? 'solid' : 'outline'" icon="i-heroicons-speaker-x-mark"></UButton>
+                :variant="settingsStore.music === '' ? 'solid' : 'outline'" icon="i-heroicons-speaker-x-mark" aria-label="Mute music"></UButton>
               <UButton class="justify-center" v-for="(music, index) in playlist" :key="music"
+              aria-label="Sound"
                 @click="settingsStore.setMusic(music)" :variant="settingsStore.music === music ? 'solid' : 'outline'">{{
                   index
                   +
@@ -203,7 +210,7 @@
             <div class="grow">
               <UButtonGroup class="flex" orientation="horizontal">
                 <UInput class="grow" placeholder="Seconds" v-model="dev.timer" />
-                <UButton icon="i-heroicons-paper-airplane"
+                <UButton icon="i-heroicons-paper-airplane" aria-label="Set seconds"
                   @click="pomodoroStore.setTimer(dev.timer ? dev.timer / 60 : undefined)" />
               </UButtonGroup>
             </div>

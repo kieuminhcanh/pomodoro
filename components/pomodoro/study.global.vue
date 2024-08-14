@@ -6,11 +6,11 @@
           <Transition enter-active-class="transition ease-out duration-300" enter-from-class="opacity-0 translate-y-4"
             enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-100"
             leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-4">
-            <UButton v-if="pomodoroStore.isReset" @click="pomodoroStore.setTimer()" icon=" i-heroicons-arrow-path"
+            <UButton v-if="pomodoroStore.isReset" @click="pomodoroStore.setTimer()" icon=" i-heroicons-arrow-path" aria-label="Reset"
               class=" justify-center" color="white" :ui="{ rounded: 'rounded-full' }">
 
             </UButton>
-            <UButton v-else @click=" !pomodoroStore.isActive ? pomodoroStore.start() : pomodoroStore.stop()"
+            <UButton v-else @click=" !pomodoroStore.isActive ? pomodoroStore.start() : pomodoroStore.stop()" aria-label="Control timer"
               class="transition-colors duration-300 ease-in-out" size="lg"
               :icon="!pomodoroStore.isActive ? 'i-heroicons-play-solid' : !pomodoroStore.isReset ? 'i-heroicons-stop-solid' : 'i-heroicons-arrow-path'"
               variant="solid" :ui="{ rounded: 'rounded-full' }" color="white">

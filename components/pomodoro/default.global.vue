@@ -11,11 +11,11 @@
       <Transition enter-active-class="transition ease-out duration-300" enter-from-class="opacity-0 translate-y-4"
         enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-100"
         leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-4">
-        <UButton v-if="pomodoroStore.isReset" @click="pomodoroStore.setTimer()" class="w-24 h-24 flex justify-center"
+        <UButton v-if="pomodoroStore.isReset" @click="pomodoroStore.setTimer()" class="w-24 h-24 flex justify-center" aria-label="Reset"
           color="white" :ui="{ rounded: 'rounded-full' }">
           <UIcon name=" i-heroicons-arrow-path" class="w-12 h-12" />
         </UButton>
-        <UButton v-else @click=" !pomodoroStore.isActive ? pomodoroStore.start() : pomodoroStore.stop()"
+        <UButton v-else @click=" !pomodoroStore.isActive ? pomodoroStore.start() : pomodoroStore.stop()" aria-label="Control timer"
           class="w-24 h-24 flex justify-center transition-colors duration-300 ease-in-out"
           :ui="{ rounded: 'rounded-full' }" :color="!pomodoroStore.isActive ? 'primary' : 'red'">
           <UIcon

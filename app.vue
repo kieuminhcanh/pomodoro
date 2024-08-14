@@ -10,6 +10,9 @@
     titleTemplate: (titleChunk) => {
       return titleChunk ? `${titleChunk} - Pomodoro Timer` : 'Pomodoro Timer'
     },
+    htmlAttrs: {
+      lang: 'en'
+    },
     bodyAttrs: {
       class: 'bg-white dark:bg-gray-950'
     }

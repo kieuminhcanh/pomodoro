@@ -18,7 +18,7 @@
       <p>{{ error?.message }}</p>
 
       <template #footer>
-        <UButton @click="handleError">Back to Home</UButton>
+        <UButton @click="handleError" aria-label="Home">Back to Home</UButton>
       </template>
     </UCard>
   </UContainer>
