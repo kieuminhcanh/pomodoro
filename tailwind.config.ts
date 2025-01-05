@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>>{
   theme: {
@@ -23,7 +22,25 @@ export default <Partial<Config>>{
           900: '#0A5331',
           950: '#052e16'
         }
-      }
+      },
+      rotate: {        
+        ...Array.from({ length: 60 }, (_, i) => ({
+          [`${i + 1}`]: `${(i + 1) * 6}deg`, // Sửa lỗi ở đây
+        })).reduce((acc, curr) => ({ ...acc, ...curr }), {}),
+      },
+      // Định nghĩa các keyframes cho animation
+      // keyframes: {
+      //   rotate: {
+      //     'from': { transform: 'rotate(0deg)' },
+      //     'to': { transform: 'rotate(360deg)' },
+      //   }
+      // },
+      // Định nghĩa animation
+      // animation: {
+      //   'spin-slow': 'rotate 60s circle infinite', // Kim giây
+      //   'spin-medium': 'rotate 3600s linear infinite', // Kim phút
+      //   'spin-fast': 'rotate 43200s linear infinite', // Kim giờ
+      // }
     }
   },
   content: [
@@ -35,6 +52,9 @@ export default <Partial<Config>>{
     },
     {
       pattern: /to-(sky|cyan|violet|slate|neutral)-(400|500|600)/,
+    },
+    {
+      pattern: /rotate-(0|[1-5]?[0-9]|60)/, // Bắt rotate-0 đến rotate-60
     },
   ]
 }

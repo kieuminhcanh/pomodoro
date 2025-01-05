@@ -12,6 +12,7 @@
   "devDependencies": {
     "@iconify-json/material-symbols-light": "^1.1.25",
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^2.18.3",
     "@nuxtjs/color-mode": "^3.4.2",
     "@pinia/nuxt": "0.5.2",
@@ -25,7 +26,10 @@
     "howler": "^2.2.4",
     "nuxt": "^3.12.4",
     "nuxt-gtag": "^2.1.0",
+    "nuxt-svgo": "^4.0.10",
     "pinia": "^2.2.0",
+    "sass": "^1.83.1",
     "title-case": "^4.3.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

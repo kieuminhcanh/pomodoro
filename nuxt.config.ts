@@ -41,7 +41,9 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
-    "nuxt-gtag"    
+    "nuxt-gtag",
+    "@nuxt/image",
+    'nuxt-svgo'
   ],
   pwa: {
     "includeAssets": [
@@ -109,6 +111,9 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  svgo: {
+    autoImportPath: './public/clock',
   },
   gtag: {
     id: 'G-FFJP2236LD'
