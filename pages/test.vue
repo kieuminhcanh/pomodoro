@@ -18,13 +18,13 @@
         <input type="checkbox" v-model="state.showSecond" min="50" max="200" />
         Second
       </div>
-    </div>
-    <!-- Clock -->
-    <div class="relative rounded-full bg-white border-4 border-gray-300 m-12"
-      :style="{ width: `${diameter}px`, height: `${diameter}px` }">
-      <div class="absolute mx-auto bottom-14 h-1/2 left-0 right-0 text-center text-gray-500 font-semibold ">
+      <div class="flex gap-2">
         {{ now.toLocaleTimeString() }}
       </div>
+    </div>
+    <!-- Clock -->
+    <div class="relative rounded-full bg-white border-4 border-gray-300 m-12" :class="{ running: state.run }"
+      :style="{ width: `${diameter}px`, height: `${diameter}px` }">
       <!-- Hour hand -->
       <div
         class="absolute mx-auto left-0 right-0 h-full z-10 inline-flex flex-col items-center justify-center drop-shadow-md animate-spin-hour"
@@ -101,7 +101,7 @@ import { ref } from 'vue'
     hours: now.value.getHours(),
     minutes: now.value.getMinutes(),
     seconds: now.value.getSeconds()
-  })
+  })  
 </script>
 
 <style lang="scss" scoped>
@@ -112,24 +112,31 @@ import { ref } from 'vue'
   }
 
   .animate-spin-second {
-    --rotation-start: calc(var(--seconds) * 6deg);
-    animation: rotate 60s infinite linear;    
+    --rotation-start: calc((var(--seconds) + 0.5) * 6deg);
+    animation: rotate 60s infinite linear paused; 
   }
 
   .animate-spin-minute {
-    --rotation-start: calc(var(--minutes) * 6deg);
-    animation: rotate 3600s linear infinite;
+    --rotation-start: calc(var(--minutes) * 6deg + var(--seconds) * 0.1deg);
+    animation: rotate 3600s infinite linear paused;
   }
 
   .animate-spin-hour {
-    --rotation-start: calc(var(--hours) * 6deg);
-    animation: rotate 43200s linear infinite;
+    --rotation-start: calc(var(--hours) * 30deg + var(--minutes) * 0.5deg);
+    animation: rotate 43200s infinite linear paused;
+  }
+
+  .running {
+    .animate-spin-second, .animate-spin-minute, .animate-spin-hour {
+      animation-play-state: running;
+    }
   }
 
   @keyframes rotate {
     from {
       transform: rotate(calc(var(--rotation-start, 0deg)));
     }
+
     to {
       transform: rotate(calc(var(--rotation-start, 0deg) + 360deg));
     }
