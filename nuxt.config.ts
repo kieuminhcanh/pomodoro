@@ -111,10 +111,7 @@ export default defineNuxtConfig({
         }
       }
     }
-  },
-  svgo: {
-    autoImportPath: './public/clock',
-  },
+  },  
   gtag: {
     id: 'G-FFJP2236LD'
   }

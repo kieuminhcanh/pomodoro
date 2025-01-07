@@ -23,7 +23,7 @@ export default <Partial<Config>>{
           950: '#052e16'
         }
       },
-      rotate: {        
+      rotate: {
         ...Array.from({ length: 60 }, (_, i) => ({
           [`${i + 1}`]: `${(i + 1) * 6}deg`, // Sửa lỗi ở đây
         })).reduce((acc, curr) => ({ ...acc, ...curr }), {}),
@@ -47,14 +47,10 @@ export default <Partial<Config>>{
     './components/**/*.{vue,js}',
   ],
   safelist: [
-    {
-      pattern: /from-(sky|cyan|violet|slate|neutral)-(400|500|600)/,
-    },
-    {
-      pattern: /to-(sky|cyan|violet|slate|neutral)-(400|500|600)/,
-    },
-    {
-      pattern: /rotate-(0|[1-5]?[0-9]|60)/, // Bắt rotate-0 đến rotate-60
-    },
+    { pattern: /from-(sky|cyan|violet|slate|neutral)-(400|500|600)/ },
+    { pattern: /to-(sky|cyan|violet|slate|neutral)-(400|500|600)/ },
+    { pattern: /rotate-(0|[1-5]?[0-9]|60)/ },
+    { pattern: /shadow-/ },
+    { pattern: /bg-/ },
   ]
 }
