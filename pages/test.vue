@@ -1,31 +1,29 @@
 <template>
-  <div class="flex flex-col items-center justify-center h-screen gap-5 overflow-hidden">
-    <!-- Toolbar -->
-    <div class="flex gap-5">
+  <!-- Toolbar -->
+  <div class="fixed top-5 left-1/2 -translate-x-1/2 flex gap-10 select-none z-50">
       <div class="flex gap-2">
-        <input type="checkbox" v-model="state.run" />
-        Run
+        <UCheckbox v-model="state.run" label="Run" />        
       </div>
       <div class="flex gap-2">
-        <input type="checkbox" v-model="state.showHour" />
-        Hour
+        <UCheckbox v-model="state.dark" label="Dark" />        
       </div>
       <div class="flex gap-2">
-        <input type="checkbox" v-model="state.showMinute" />
-        Minute
+        <UCheckbox v-model="state.showHour" label="Hour" />        
       </div>
       <div class="flex gap-2">
-        <input type="checkbox" v-model="state.showSecond" />
-        Second
+        <UCheckbox v-model="state.showMinute" label="Minute" />        
       </div>
       <div class="flex gap-2">
-        <input type="checkbox" v-model="state.test" />
-        Test
+        <UCheckbox v-model="state.showSecond" label="Second" />        
       </div>
       <div class="flex gap-2">
+        <UCheckbox v-model="state.test" label="Test" />        
+      </div>      
+      <div class="flex gap-2 text-gray-500">
         {{ now.toLocaleTimeString() }}
       </div>
     </div>
+  <div class="flex items-center justify-center h-screen gap-5" :class="{'bg-white': !state.dark}">    
     <!-- Clock -->
     <div class="clock" :class="{ running: state.run }" :style="{ width: `${diameter}px`, height: `${diameter}px` }">
       <!-- Minute divisions -->
@@ -38,25 +36,15 @@
       </div>
       <!-- Hour hand -->
       <div class="hands animate-spin-hour" v-if="state.showHour">
-        <ClockHour/> 
+        <ClockHour :hours="now.getHours()"/>
       </div>
       <!-- Minute hand -->
       <div class="hands animate-spin-minute" v-if="state.showMinute">
-        <ClockMinute/>
-        <!-- <div class="w-2 h-1/3 bg-blue-500 rounded-t-full">
-          <div class="w-1.5 h-1/2 mx-auto -mt-16 bg-blue-500 rounded-t-md"></div>
-        </div>
-        <div class="w-3 h-3 rounded-full border-4 border-blue-500 outline outline-4 outline-blue-500"></div>
-        <div class="w-2 h-1/3 bg-transparent"></div> -->
+        <ClockMinute :minutes="now.getMinutes()" />        
       </div>
       <!-- Second hand -->
       <div class="hands animate-spin-second" v-if="state.showSecond">
-        <ClockSecond :seconds="now.getSeconds()"/>
-        <!-- <div class="w-0.5 h-1/2 bg-red-500" style="  box-shadow: 1px 1px;"></div>
-        <div class="w-4 h-4 rounded-full bg-red-500"></div>
-        <div class="w-0.5 h-1/2">
-          <div class="w-0.5 h-1/4 bg-red-500"></div>
-        </div> -->
+        <ClockSecond :seconds="now.getSeconds()" />        
       </div>
 
       <!-- Test divisions-->
@@ -85,6 +73,7 @@ import { ref } from 'vue'
     showHour: true,
     showMinute: true,
     showSecond: true,
+    dark: true
   })
 
 
@@ -105,10 +94,10 @@ import { ref } from 'vue'
 
   .clock {
     @apply relative rounded-full m-12 bg-opacity-5;
-    background: radial-gradient(circle, #4aff212f 0%, #00000000 50%);
+    // background: radial-gradient(circle, #4aff210f 0%, #00000000 50%);
 
     .hands {
-      @apply absolute mx-auto left-0 right-0 h-full inline-flex flex-col items-center justify-center drop-shadow-lg;      
+      @apply absolute mx-auto left-0 right-0 h-full inline-flex flex-col items-center justify-center drop-shadow-lg;
     }
 
     .divisions {

@@ -1,7 +1,10 @@
 <template>
   <div class="flex h-4/6 flex-col justify-center items-center relative">
     <div class="absolute top-7 w-4 h-2/5 hand-shadow"></div>
-    <div class="w-4 h-full hand">
+    <div class="w-4 h-full hand" :style="{
+      boxShadow: `inset ${hours < 30 ? '5px' : '-5px'} 0px 3px 1px #777777`,
+      transition: `box-shadow 1s ease-in-out`
+    }">
       <div class="absolute top-7 left-1/2 -translate-x-1/2 w-2 h-2/5 rounded-full brightness-200"
         :style="{ backgroundColor: color }"></div>
     </div>
@@ -18,7 +21,11 @@
     bgColor: {
       type: String,
       default: '#334155'
-    }
+    },
+    hours: {
+      type: Number,
+      default: 0
+    },
   })
 </script>
 
