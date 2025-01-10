@@ -6,8 +6,8 @@
     <div class="flex h-5/6 flex-col justify-center items-center relative">
       <div class="absolute top-7 w-4 h-2/5 hand-shadow"></div>
       <div class="hand" :style="{
-        boxShadow: `inset ${minutes < 30 ? '5px' : '-5px'} 0px 3px 1px #777777`,
-        transition: `box-shadow 1s ease-in-out`
+        boxShadow: `inset ${minutes < 30 ? '4px' : '-4px'} 0px 2px 0px #999999`,
+        transition: `box-shadow 2s ease-in-out`
       }">
         <div class="light" :style="{ backgroundColor: color }"></div>
       </div>

@@ -37,6 +37,8 @@
           :icon="state.showSecond ? 'i-material-symbols-light:check-box' : 'i-material-symbols-light:check-box-outline-blank'"
           @click="state.showSecond = !state.showSecond" variant="outline">Second</UButton>
         <UButton @click="updateClock('second', 1)">+</UButton>
+        <UButton @click="pause(); now= now.set('second', 0)">10</UButton>
+        <UButton @click="pause(); now= now.set('second', 60)">70</UButton>
       </UButtonGroup>
     </div>
    
@@ -109,13 +111,11 @@
     immediate: true
   })
 
-  function updateClock(unit: ManipulateType = 'second', increment = 1) {
-    // pause()
+  function updateClock(unit: ManipulateType = 'second', increment = 1) {    
     now.value = now.value.add(increment, unit)
     clock.hours = now.value.hour()
     clock.minutes = now.value.minute()
-    clock.seconds = now.value.second()    
-    // resume()
+    clock.seconds = now.value.second()        
   }
 
 </script>
