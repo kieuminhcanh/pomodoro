@@ -40,10 +40,10 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
-    "@vite-pwa/nuxt",
-    "nuxt-gtag",
+    "@vite-pwa/nuxt",    
     "@nuxt/image",
-    'nuxt-svgo'
+    "dayjs-nuxt",
+    "@nuxt/scripts"
   ],
   pwa: {
     "includeAssets": [
@@ -112,7 +112,25 @@ export default defineNuxtConfig({
       }
     }
   },  
-  gtag: {
-    id: 'G-FFJP2236LD'
-  }
+  $production: {
+    scripts: {
+      registry: {
+        googleTagManager: {
+          id: 'G-FFJP2236LD',
+        }
+      }
+    }
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          api: 'modern',
+        },
+        scss: {
+          api: 'modern',
+        },
+      },
+    },
+  },
 })
