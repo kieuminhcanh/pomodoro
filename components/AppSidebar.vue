@@ -5,6 +5,9 @@
   const { drawer } = storeToRefs(settingsStore)
   const { pomodoro } = storeToRefs(pomodoroStore)
 
+  const isProd = import.meta.env.PROD
+  const prefix = import.meta.env.BASE_URL || ''
+
 
   const stylesImport = import.meta.glob('@/components/pomodoro/*.vue')
 
@@ -12,7 +15,7 @@
 
   const musicImport = import.meta.glob('@/public/music/*.mp3')
 
-  const playlist = Object.entries(musicImport).map(([key]) => key.split('public').pop()) as string[]
+  const playlist = Object.entries(musicImport).map(([key]) => key.split('public').pop())
 
   const imagesImport = import.meta.glob('@/public/images/*-thumbnail.jpg')
 
@@ -22,6 +25,8 @@
 
   const videos = Object.entries(videosImport).map(([key]) => key.split('public').pop()) as string[]
 
+  console.log(images.map(src => isProd ? prefix + src : src))
+  
 
   function testNotification(value: boolean) {
     console.log(value)
