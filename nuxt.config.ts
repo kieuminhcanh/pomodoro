@@ -1,10 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-  runtimeConfig: {
-    public: {
-      dev: process.env.NODE_ENV === 'development', // Expose dev mode as a runtime config variable
-    }
-  },
+export default defineNuxtConfig({  
   devtools: { enabled: false },
   ssr: false,
   app: {
