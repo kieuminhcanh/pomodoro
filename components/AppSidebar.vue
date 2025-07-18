@@ -1,50 +1,50 @@
 <script setup lang="ts">
 
-  const settingsStore = useSettingsStore()
-  const pomodoroStore = usePomodoroStore()
-  const { drawer } = storeToRefs(settingsStore)
-  const { pomodoro } = storeToRefs(pomodoroStore)
+const settingsStore = useSettingsStore()
+const pomodoroStore = usePomodoroStore()
+const { drawer } = storeToRefs(settingsStore)
+const { pomodoro } = storeToRefs(pomodoroStore)
+const isDev = import.meta.env.DEV
 
-  const isProd = import.meta.env.PROD
-  const prefix = import.meta.env.BASE_URL || ''
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL.slice(0, -1) // Nuxt 3 sẽ tự động đưa app.baseURL vào runtimeConfig
+
+const stylesImport = import.meta.glob('@/components/pomodoro/*.vue')
+
+const pomodoroStyles = Object.entries(stylesImport).map(([key]) => key.split('/')?.pop()?.split('.')?.shift())
+
+const musicImport = import.meta.glob('@/public/music/*.mp3')
+
+const playlist = Object.entries(musicImport).map(([key]) => key.split('public').pop()).map(src => baseURL + src)
+
+const imagesImport = import.meta.glob('@/public/images/*-thumbnail.jpg')
+
+const images = Object.entries(imagesImport).map(([key]) => key.split('public').pop()).map(src => baseURL + src)
+
+const videosImport = import.meta.glob('@/public/videos/*.mp4')
+
+const videos = Object.entries(videosImport).map(([key]) => key.split('public').pop()).map(src => baseURL + src)
 
 
-  const stylesImport = import.meta.glob('@/components/pomodoro/*.vue')
 
-  const pomodoroStyles = Object.entries(stylesImport).map(([key]) => key.split('/')?.pop()?.split('.')?.shift())
 
-  const musicImport = import.meta.glob('@/public/music/*.mp3')
+function testNotification(value: boolean) {
+  console.log(value)
 
-  const playlist = Object.entries(musicImport).map(([key]) => key.split('public').pop())
-
-  const imagesImport = import.meta.glob('@/public/images/*-thumbnail.jpg')
-
-  const images = Object.entries(imagesImport).map(([key]) => key.split('public').pop()) as string[]
-
-  const videosImport = import.meta.glob('@/public/videos/*.mp4')
-
-  const videos = Object.entries(videosImport).map(([key]) => key.split('public').pop()) as string[]
-
-  console.log(images.map(src => isProd ? prefix + src : src))
-  
-
-  function testNotification(value: boolean) {
-    console.log(value)
-
-    if (value) {
-      useWebNotification().ensurePermissions().then((result) => {
-        if (result) {
-          useWebNotification({ title: 'Pomodoro Timer', body: 'Work in Sprints, Win the Marathon' })
-        } else {
-          settingsStore.allowNotification = false
-        }
-      })
-    }
+  if (value) {
+    useWebNotification().ensurePermissions().then((result) => {
+      if (result) {
+        useWebNotification({ title: 'Pomodoro Timer', body: 'Work in Sprints, Win the Marathon' })
+      } else {
+        settingsStore.allowNotification = false
+      }
+    })
   }
+}
 
-  const dev = ref({
-    timer: 4
-  })
+const dev = ref({
+  timer: 4
+})
 </script>
 
 <template>
@@ -130,11 +130,11 @@
         <div class="flex flex-row items-center">
           <div class="flex-none w-28">Skin</div>
           <div class="grow flex gap-4">
-            <div v-for=" style in pomodoroStyles " :key="style">
+            <div v-for="style in pomodoroStyles" :key="style">
               <UButton class="justify-center capitalize" @click="settingsStore.setPomodoroStyle(style)"
                 :aria-label="`Pomodoro style ${style}`" :variant="settingsStore.style === style ? 'solid' : 'outline'">
                 {{
-                style }}
+                  style }}
               </UButton>
             </div>
           </div>
@@ -144,7 +144,7 @@
           <div class="flex-none w-28">Background</div>
           <div class="grow  grid-flow-row gap-4">
             <ColorSelect :colors="['sky', 'cyan', 'violet', 'slate', 'neutral']"
-              @update:model-value="$event => useSettingsStore().setBackground({ type: 'color', value: $event.value })" />
+              @update:model-value="$event => settingsStore.setBackground({ type: 'color', value: $event.value })" />
           </div>
         </div>
         <div class="flex flex-row items-center">
@@ -164,8 +164,8 @@
           <div class="grow">
             <div class="grid grid-cols-3 gap-4">
               <div v-for="video in videos" :key="video" class="h-full aspect-square">
-                <img class="object-cover h-16 w-full rounded-lg" :src="video.replace('.mp4', '-thumbnail.png')" alt="Background video"
-                  @click="settingsStore.setBackground({ type: 'video', value: video })"
+                <img class="object-cover h-16 w-full rounded-lg" :src="video.replace('.mp4', '-thumbnail.png')"
+                  alt="Background video" @click="settingsStore.setBackground({ type: 'video', value: video })"
                   :class="{ 'ring-2 ring-blue-500': settingsStore.background.value === video }" />
               </div>
             </div>
@@ -176,10 +176,11 @@
           <div class="grow  grid-flow-row gap-4">
             <div class="grid grid-cols-4 gap-4">
               <UButton class="justify-center" @click="settingsStore.setMusic('')"
-                :variant="settingsStore.music === '' ? 'solid' : 'outline'" icon="i-heroicons-speaker-x-mark" aria-label="Mute music"></UButton>
-              <UButton class="justify-center" v-for="(music, index) in playlist" :key="music"
-              aria-label="Sound"
-                @click="settingsStore.setMusic(music)" :variant="settingsStore.music === music ? 'solid' : 'outline'">{{
+                :variant="settingsStore.music === '' ? 'solid' : 'outline'" icon="i-heroicons-speaker-x-mark"
+                aria-label="Mute music"></UButton>
+              <UButton class="justify-center" v-for="(music, index) in playlist" :key="music" aria-label="Sound"
+                @click="settingsStore.setMusic(music)" :variant="settingsStore.music === music ? 'solid' : 'outline'">
+                {{
                   index
                   +
                   1 }}
@@ -206,7 +207,7 @@
         </div>
       </div>
 
-      <template v-if="useRuntimeConfig().public.dev">
+      <template v-if="isDev">
         <UDivider class="my-6" />
         <h3 class="text-2xl mb-6">Dev Mode</h3>
         <div class="grid grid-flow-row gap-4">

@@ -8,9 +8,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: false,
   app: {
+    baseURL:  process.env.NUXT_APP_BASE_URL || '/',
     head: {
       link: [
-        { rel: 'icon', href: '/logo.png', type: 'image/png' }
+        { rel: 'icon', href: 'logo.png', type: 'image/png' }
       ],
       meta: [
         { name: 'description', content: 'Work in Sprints, Win the Marathon' },
