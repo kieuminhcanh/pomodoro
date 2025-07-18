@@ -4,9 +4,13 @@ export const useSettingsStore = defineStore('AppSettings', () => {
   const drawer = ref(true)
   const fullscreen = ref(false)
   const style = ref('study')
+
+  const config = useRuntimeConfig()
+  const baseURL = config.app.baseURL.slice(0, -1) // Nuxt 3 sẽ tự động đưa app.baseURL vào runtimeConfig
+
   const background = ref({
     type: "image",
-    value: "/images/3.jpg"
+    value: baseURL + "/images/3.jpg"
   })
 
   const allowNotification = ref(false)
