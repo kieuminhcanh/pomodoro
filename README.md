@@ -5,7 +5,7 @@
 A modern and customizable Pomodoro timer web application built with Nuxt 3 and Nuxt UI, designed to enhance focus and productivity through structured work intervals.
 
 ## Live
-- [https://pomodoro.website](https://pomodoro.website)
+- [Pomodoro online](https://kieuminhcanh.github.io/pomodoro/)
 
 ## Features
 
