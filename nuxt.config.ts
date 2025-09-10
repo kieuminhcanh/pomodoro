@@ -49,8 +49,8 @@ export default defineNuxtConfig({
     },
     "manifest": {
       "id": "website.pomodoro.pwa",
-      "scope": "/",
-      "start_url": "/",
+      "scope": "/pomodoro/",
+      "start_url": "/pomodoro/",
       "name": "Pomodoro Timer",
       "short_name": "Pomodoro",
       "description": "Work in Sprints, Win the Marathon",
@@ -67,7 +67,7 @@ export default defineNuxtConfig({
       },
       "icons": [
         {
-          "src": "logo.png",
+          "src": "/pomodoro/logo.png",
           "sizes": "72x72 96x96 128x128 256x256 512x512",
           "type": "image/png"
         }
@@ -77,13 +77,13 @@ export default defineNuxtConfig({
       "iarc_rating_id": "228e2971-4722-41cb-9ab8-609426d77fae",
       "screenshots": [
         {
-          "src": "/screenshots/1500x2668.png",
+          "src": "/pomodoro/screenshots/1500x2668.png",
           "sizes": "1500x2668",
           "type": "image/jpg",
           "platform": "mobile"
         },
         {
-          "src": "/screenshots/2560x1600.png",
+          "src": "/pomodoro/screenshots/2560x1600.png",
           "sizes": "2560x1600",
           "type": "image/jpg",
           "platform": "wide"
@@ -101,7 +101,7 @@ export default defineNuxtConfig({
         "params": {
           "title": "Pomodoro Timer",
           "text": "Work in Sprints, Win the Marathon",
-          "url": "https://pomodoro.website"
+          "url": "https://kieuminhcanh.github.io/pomodoro/"
         }
       }
     }
