@@ -1,9 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+const baseURL = process.env.NUXT_APP_BASE_URL || '/'
 export default defineNuxtConfig({  
   devtools: { enabled: false },
   ssr: false,
   app: {
-    baseURL:  process.env.NUXT_APP_BASE_URL || '/',
+    baseURL:  baseURL,
     head: {
       link: [
         { rel: 'icon', href: 'logo.png', type: 'image/png' }
@@ -13,15 +13,15 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Ken Kieu' },
         { property: 'og:title', content: 'Pomodoro Timer' },
         { property: 'og:description', content: 'Work in Sprints, Win the Marathon' },
-        { property: 'og:image', content: 'https://pomodoro.website/screenshots/shared.png' },
-        { property: 'og:url', content: 'https://pomodoro.website' },
+        { property: 'og:image', content: `https://kieuminhcanh.github.io${baseURL}screenshots/shared.png` },
+        { property: 'og:url', content: `https://kieuminhcanh.github.io${baseURL}` },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary' },
         { name: 'twitter:site', content: '@kieuminhcanh' },
         { name: 'twitter:creator', content: '@kieuminhcanh' },
         { name: 'twitter:title', content: 'Pomodoro Timer' },
         { name: 'twitter:description', content: 'Work in Sprints, Win the Marathon' },
-        { name: 'twitter:image', content: 'https://pomodoro.website/screenshots/shared.png' },
+        { name: 'twitter:image', content: `https://kieuminhcanh.github.io${baseURL}screenshots/shared.png` },
       ]
     }
   },
@@ -49,8 +49,8 @@ export default defineNuxtConfig({
     },
     "manifest": {
       "id": "website.pomodoro.pwa",
-      "scope": "/pomodoro/",
-      "start_url": "/pomodoro/",
+      "scope": baseURL,
+      "start_url": baseURL,
       "name": "Pomodoro Timer",
       "short_name": "Pomodoro",
       "description": "Work in Sprints, Win the Marathon",
@@ -67,7 +67,7 @@ export default defineNuxtConfig({
       },
       "icons": [
         {
-          "src": "/pomodoro/logo.png",
+          "src": `${baseURL}logo.png`,
           "sizes": "72x72 96x96 128x128 256x256 512x512",
           "type": "image/png"
         }
@@ -77,13 +77,13 @@ export default defineNuxtConfig({
       "iarc_rating_id": "228e2971-4722-41cb-9ab8-609426d77fae",
       "screenshots": [
         {
-          "src": "/pomodoro/screenshots/1500x2668.png",
+          "src": `${baseURL}screenshots/1500x2668.png`,
           "sizes": "1500x2668",
           "type": "image/jpg",
           "platform": "mobile"
         },
         {
-          "src": "/pomodoro/screenshots/2560x1600.png",
+          "src": `${baseURL}screenshots/2560x1600.png`,
           "sizes": "2560x1600",
           "type": "image/jpg",
           "platform": "wide"
